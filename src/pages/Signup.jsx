@@ -1,9 +1,13 @@
 import { useState } from "react"
 import {AiFillEyeInvisible, AiFillEye} from "react-icons/ai"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import OAuth from "../components/OAuth";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {db} from "../firebase"
+import { serverTimestamp, doc, setDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
+
+
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false)
   const [formData, setFormaData] = useState({
@@ -18,6 +22,7 @@ export default function Signup() {
       [e.target.id]: e.target.value,
     }))
   }
+  const Navigate = useNavigate();
  async function onSubmit(e)
  {
 e.preventDefault();
@@ -29,10 +34,17 @@ try {
     password
   );
   const user = userCredential.user;
-  console.log(user)
+ updateProfile(auth.currentUser, {
+  displayName: name
+ })
+ const formDataCopy = {...formData};
+ delete formDataCopy.password;
+ formDataCopy.timestamp = serverTimestamp();
+ await setDoc(doc(db, "users", user.uid), formDataCopy)
+ Navigate("/")
 }
 catch(error) {
-  console.log(error)
+  toast.error("Something went wrong")
 }
  }
   return (
