@@ -27,8 +27,11 @@ try {
  })
  Navigate("/")
   }
+  else {
+    Navigate("/")
+  }
 } catch (error) {
-  console.log(error)
+toast.error("Could not log in")
 }
   }
   return (

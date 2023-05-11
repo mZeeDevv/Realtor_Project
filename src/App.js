@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from "./pages/home"
-import Profile from "./pages/profile"
+import Profile from "./pages/Profile"
 import SignIn from "./pages/Signin"
 import ForgotPassword from "./pages/Forgotpassword"
 import Offers from "./pages/offers"
@@ -10,6 +10,7 @@ import Header from './components/Header';
 import SignUp from './pages/Signup';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PrivateRoute from './components/PrivateRoute';
 
 function App(){
   return(
@@ -18,7 +19,9 @@ function App(){
    <Header/>
   <Routes>
    <Route path='/' element={<Home/>}/>
+   <Route path="/profile" element={<PrivateRoute/>}>
    <Route path='/profile' element={<Profile/>}/>
+   </Route>
    <Route path='/sign-in' element={<SignIn/>}/>
    <Route path='/reset-pass' element={<ForgotPassword/>}/>
    <Route path='/offers' element={<Offers/>}/>
