@@ -6,6 +6,7 @@ import { db } from "../firebase";
 import { collection, doc, getDoc, getDocs, orderBy, query, updateDoc, where } from "firebase/firestore";
 import {FcHome} from "react-icons/fc"
 import ListingItem from "./ListingItem";
+import Spinner from "../components/Spinner";
 
 export default function Profile() {
   const Navigate = useNavigate();
@@ -69,6 +70,9 @@ setloading(false)
 }
 getListingUser()
   }, [auth.currentUser.uid])
+  if(loading) {
+    return <Spinner/>
+  }
   return (
   <>
   <section className="max-w-6xl mx-auto flex justify-center items-center flex-col">
@@ -121,7 +125,7 @@ getListingUser()
       <>
       <h2 className="text-center font-semibold text-2xl mb-6">My Listing</h2> 
       <ul
-      className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-6 mb-6"
+      className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 mt-6 mb-6"
       >
       {listings.map((listing) => (
       <ListingItem
@@ -134,7 +138,6 @@ getListingUser()
       </ul>
       </>
     )}
-
   </div>
   </>
   )
