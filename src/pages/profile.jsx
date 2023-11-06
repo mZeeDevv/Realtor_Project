@@ -1,13 +1,16 @@
 import { getAuth, updateProfile } from "firebase/auth"
-import { useState } from "react"
+import { useEffect, useState, } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify";
 import { db } from "../firebase";
-import { updateDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, orderBy, query, updateDoc, where } from "firebase/firestore";
 import {FcHome} from "react-icons/fc"
+import ListingItem from "./ListingItem";
 
 export default function Profile() {
   const Navigate = useNavigate();
+  const [listings, setlistings] = useState(null)
+  const [loading, setloading] = useState(true)
   const auth = getAuth()
   const [formData, setFormaData] = useState({
     name: auth.currentUser.displayName,
@@ -44,6 +47,28 @@ export default function Profile() {
     toast.error("Could not update profile details")
    }
   }
+
+  useEffect(() => {
+async function getListingUser() {
+  setloading(true);
+const listingRef = collection(db, "listings");
+const q = query(
+listingRef,
+where("userRef", "==", auth.currentUser.uid),
+orderBy("time", "desc"))
+const querySnap = await getDocs(q);
+let listings = [ ];
+querySnap.forEach((doc) => {
+  return listings.push({
+    id: doc.id,
+    data: doc.data(),
+  })
+})
+setlistings(listings);
+setloading(false)
+}
+getListingUser()
+  }, [auth.currentUser.uid])
   return (
   <>
   <section className="max-w-6xl mx-auto flex justify-center items-center flex-col">
@@ -91,6 +116,26 @@ export default function Profile() {
       </button>
     </div>
   </section>
+  <div className="max-w-6xl px-3 mt-6 mx-auto">
+    {!loading && listings.length > 0 && (
+      <>
+      <h2 className="text-center font-semibold text-2xl mb-6">My Listing</h2> 
+      <ul
+      className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-6 mb-6"
+      >
+      {listings.map((listing) => (
+      <ListingItem
+      key={listing.id}
+      id={listing.id}
+      lisitngs={listing.data}
+      />
+
+      ))}
+      </ul>
+      </>
+    )}
+
+  </div>
   </>
   )
 }

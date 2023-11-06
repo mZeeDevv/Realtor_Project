@@ -107,6 +107,7 @@ import { useNavigate } from 'react-router';
                 images,
                 time : serverTimestamp(),
                 imgUrl,
+                userRef: auth.currentUser.uid,
             }
             delete formDataCopy.images;
             !formDataCopy.offer && delete formDataCopy.discount;
