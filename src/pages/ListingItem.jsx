@@ -2,9 +2,10 @@ import React from 'react'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 import { FaLocationDot, FaBed } from 'react-icons/fa6'
-import {GiBathtub} from 'react-icons/gi'
+import {GiBathtub, GiCoinsPile} from 'react-icons/gi'
 
 export default function ListingItem({ lisitngs, id }) {
+    
     return (
         <li 
         className='bg-white flex flex-col justify-between shadow-md hover:shadow-xl rounded-md overflow-hidden
