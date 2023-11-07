@@ -4,9 +4,11 @@ import { db } from "../firebase";
 import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
 import ListingItem from "./ListingItem";
+import { useParams } from "react-router";
 
 
-export default function offers() {
+export default function Category() {
+  const prams = useParams()
   const [loading, setloading] = useState(true);
   const [listings, setlistings] = useState([])
 
@@ -14,7 +16,7 @@ export default function offers() {
     async function fetchdata() {
 try {
   const docRef = collection(db, "listings")
-  const q = query(docRef, where("offer", "==", true), orderBy("time", "desc"), limit(40))
+  const q = query(docRef, where("type", "==", prams.categoryName), orderBy("time", "desc"), limit(30))
   const querySnap = await getDocs(q)
   const listing = []
   querySnap.forEach((doc) => {
@@ -34,7 +36,9 @@ try {
  
   return (
     <div className="max-w-6xl mx-auto px-3">
-<h1 className="text-3xl text-center mt-6 font-bold">Offers</h1>
+<h1 className="text-3xl text-center mt-6 font-bold">
+    {prams.categoryName === "rent" ? "Places for rent" : "Places for sale"}
+    </h1>
 {loading ? (
   <Spinner/>
 ): listings && listings.length > 0 ? (
@@ -58,3 +62,4 @@ try {
     </div>
   )
 }
+
