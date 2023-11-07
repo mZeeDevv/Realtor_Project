@@ -1,6 +1,9 @@
-
+import Slider from "./Slider"
 export default function home() {
+
   return (
-    <div>home</div>
+    <div>
+      <Slider/>
+    </div>
   )
 }
