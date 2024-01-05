@@ -3,7 +3,7 @@ import { useEffect, useState, } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify";
 import { db } from "../firebase";
-import { collection, doc, getDoc, getDocs, orderBy, query, updateDoc, where } from "firebase/firestore";
+import { collection, getDocs, orderBy, query, updateDoc, where } from "firebase/firestore";
 import {FcHome} from "react-icons/fc"
 import ListingItem from "./ListingItem";
 import Spinner from "../components/Spinner";

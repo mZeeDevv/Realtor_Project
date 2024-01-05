@@ -65,9 +65,3 @@ export default function Slider() {
         )
     );
 }
-{/* listings.map((listing) => (
-            <div key={listing.id}>
-              <h1>{listing.data.imgUrl[0]}</h1>
-          </div>
-        ))
-      )} */}
