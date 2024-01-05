@@ -80,7 +80,7 @@ import { useNavigate } from 'react-router';
                     const uploadTask = uploadBytesResumable(storageRef, image);
                     uploadTask.on('state_changed',
                         (snapshot) => {
-                            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                            // const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                         },
                         (error) => {
                             rejected(error)
@@ -136,7 +136,7 @@ import { useNavigate } from 'react-router';
                             className={`px-7 py-3 font-medium
                         text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150
                         ease-in-out w-full
-                        ${type == "sale" ? "bg-slate-600 text-white" : "bg-white"
+                        ${type === "sale" ? "bg-slate-600 text-white" : "bg-white"
                                 }`}>
                             SELL</button>
 
@@ -147,7 +147,7 @@ import { useNavigate } from 'react-router';
                             id='type'
                             className={`px-7 py-3 font-medium ml-2
                         text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150
-                        ease-in-out w-full ${type == "rent" ? "bg-slate-600 text-white" : "bg-white"
+                        ease-in-out w-full ${type === "rent" ? "bg-slate-600 text-white" : "bg-white"
                                 }`}>RENT</button>
                     </div>
                     <p className='font-semibold'>Name</p>
