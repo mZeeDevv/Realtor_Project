@@ -6,7 +6,7 @@ import Spinner from "../components/Spinner";
 import ListingItem from "./ListingItem";
 
 
-export default function offers() {
+export default function Offers() {
   const [loading, setloading] = useState(true);
   const [listings, setlistings] = useState([])
 

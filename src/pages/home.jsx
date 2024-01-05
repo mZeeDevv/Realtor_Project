@@ -5,7 +5,7 @@ import { db } from "../firebase";
 import { Link } from "react-router-dom";
 import ListingItem from "./ListingItem";
 
-export default function home() {
+export default function Home() {
   const [offerlisting, setofferlistings] = useState([]);
   useEffect(() => {
     async function fetchListings() {

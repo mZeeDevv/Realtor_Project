@@ -7,7 +7,7 @@ import { collection, serverTimestamp, addDoc, } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useNavigate } from 'react-router';
 
-    export default function createlisting() {
+    export default function Createlisting() {
         const navigate = useNavigate();
         const auth = getAuth();
         const [loading, setLoading] = useState(false)
