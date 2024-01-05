@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home from "./pages/home"
 import Profile from "./pages/profile"
 import SignIn from "./pages/signin.jsx"
@@ -18,7 +18,6 @@ import PrivateRoute from './components/PrivateRoute';
 function App(){
   return(
      <>
-     <BrowserRouter basename="/Realtor_Project">
 <Router>
    <Header/>
   <Routes>
@@ -37,7 +36,6 @@ function App(){
    </Route>
   </Routes>
 </Router>
-</BrowserRouter>
 <ToastContainer
 position="bottom-center"
 autoClose={5000}
