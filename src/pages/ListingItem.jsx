@@ -2,7 +2,7 @@ import React from 'react'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 import { FaLocationDot, FaBed } from 'react-icons/fa6'
-import {GiBathtub, GiCoinsPile} from 'react-icons/gi'
+import {GiBathtub} from 'react-icons/gi'
 
 export default function ListingItem({ lisitngs, id }) {
     
@@ -15,6 +15,7 @@ export default function ListingItem({ lisitngs, id }) {
             className='content'
             to={`/category/${lisitngs.type}/${id}`}>
                 <img 
+                alt='imgListing'
                 className='h-[170px] w-full object-cover hover:scale-105 transition-scale duration-200 ease-in-out'
                 loading='lazy'
                 src={lisitngs.imgUrl[0]} />

@@ -1,7 +1,6 @@
-import { collection, doc, getDocs, limit, orderBy, query, where } from "firebase/firestore";
+import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react"
 import { db } from "../firebase";
-import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
 import ListingItem from "./ListingItem";
 import { useParams } from "react-router";
@@ -32,7 +31,7 @@ try {
 }
     }
     fetchdata()
-  }, [])
+  }, )
  
   return (
     <div className="max-w-6xl mx-auto px-3">

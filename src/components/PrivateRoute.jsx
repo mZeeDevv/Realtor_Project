@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { Navigate, Outlet } from 'react-router';
-import {loggedIn, checkingStatus, useAuthStats} from '../hooks/useAuthStats'
+import {useAuthStats} from '../hooks/useAuthStats'
 import Spinner from "./Spinner"
 export default function PrivateRoute() {
 const {loggedIn, checkingStatus} = useAuthStats();

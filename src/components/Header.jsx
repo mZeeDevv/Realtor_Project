@@ -38,7 +38,7 @@ export default function Header() {
          ${router("/offers") && "text-black border-b-red-600"}`}
          onClick={()=>navigate("/offers")}>Offers</li>
         <li className={`text-sm py-3 font-semibold border-b-[3px] border-transparent cursor-pointer
-         ${router("/sign-in") || router("/profile") && "text-black border-b-red-600"}`}
+           ${(router("/sign-in") || router("/profile")) && "text-black border-b-red-600"}`}
          onClick={()=>navigate("/profile")}>
           {pageState}
           </li>  

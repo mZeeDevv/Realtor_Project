@@ -23,7 +23,7 @@ export default function Listing() {
             }
         }
         fetchListings()
-    }, [prams.ListingId]);
+    }, );
     if (loading) {
         return <Spinner />
     }
